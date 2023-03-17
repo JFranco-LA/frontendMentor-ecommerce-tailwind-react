@@ -1,30 +1,28 @@
+import { useState } from "react";
+
 import LogoSneakers from "@/assets/images/logo.svg";
 import Avatar from "@/assets/images/image-avatar.png";
 import MenuIcon from "@/components/icons/MenuIcon";
 import CartIcon from "@/components/icons/CartIcon";
 import CloseIcon from "@/components/icons/CloseIcon";
-import { useState } from "react";
 import NavLinkHeader from "@/components/header/NavLinkHeader";
 
+import CartModalHeader from "@/components/header/CartModalHeader";
+
 const MainHeader = () => {
-  const [navClass, setNavClass] = useState(
-    "hidden font-bold md:static md:mr-auto md:flex md:flex-row md:gap-4"
-  );
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isToggleCart, setIsToggleCart] = useState(false);
 
   const handleOpenMenu = () => {
-    setNavClass(
-      "absolute top-0 left-0 flex h-full w-3/4 flex-col gap-4 gap-y-[21px] bg-white p-8 font-bold md:static md:mr-auto md:flex md:flex-row md:gap-4 z-10"
-    );
+    setIsOpenMenu(true);
   };
   const handleCloseMenu = () => {
-    setNavClass(
-      "hidden font-bold md:static md:mr-auto md:flex md:flex-row md:gap-4"
-    );
+    setIsOpenMenu(false);
   };
 
   return (
     <>
-      <header className="container mx-auto flex items-center gap-8 p-4 md:p-0">
+      <header className="container relative mx-auto flex items-center gap-8 p-4 md:p-0">
         <button className="md:hidden" onClick={handleOpenMenu}>
           <MenuIcon />
         </button>
@@ -33,7 +31,13 @@ const MainHeader = () => {
           alt="logo-page"
           className="mr-auto mb-1 h-5 md:mr-0"
         />
-        <nav className={navClass}>
+        <nav
+          className={`md:static md:mr-auto md:flex md:h-auto md:flex-row md:gap-4 md:p-0 ${
+            isOpenMenu
+              ? "absolute top-0 left-0 z-10 flex h-full w-3/4 flex-col gap-4 gap-y-[21px] bg-white p-8"
+              : "hidden"
+          } font-bold`}
+        >
           <button className="mb-12 md:hidden" onClick={handleCloseMenu}>
             <CloseIcon />
           </button>
@@ -44,7 +48,8 @@ const MainHeader = () => {
           <NavLinkHeader text="Contact" />
         </nav>
         <div className="flex gap-4">
-          <button>
+          <button onClick={() => setIsToggleCart(!isToggleCart)}>
+            {isToggleCart && <CartModalHeader />}
             <CartIcon />
           </button>
           <img className="w-10" src={Avatar} alt="" />

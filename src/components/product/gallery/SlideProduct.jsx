@@ -34,7 +34,7 @@ export default ({
   return (
     <section {...props}>
       {isOpenModal && (
-        <button className="md:col-span-4" onClick={handleCloseModal}>
+        <button className="md:col-span-4 ml-auto" onClick={handleCloseModal}>
           <CloseIcon />
         </button>
       )}
@@ -42,7 +42,7 @@ export default ({
         <img
           src={productImgs[imgIndex]}
           alt=""
-          className="aspect-[16/12] w-full md:aspect-[16/17] md:rounded-md xl:aspect-[16/16] 2xl:max-h-[500px]"
+          className="aspect-[16/12] w-full object-cover md:aspect-[16/17] md:rounded-md xl:aspect-[16/16] 2xl:max-h-[500px]"
           onClick={handleOpenModal}
         />
         <div

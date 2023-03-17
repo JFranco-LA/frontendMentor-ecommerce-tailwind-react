@@ -14,7 +14,7 @@ export default ({ productImgs, productImgsSmall }) => {
   };
 
   return (
-    <div>
+    <>
       <SlideProduct
         className="grid md:cursor-pointer md:grid-cols-4 md:gap-4"
         productImgs={productImgs}
@@ -37,6 +37,6 @@ export default ({ productImgs, productImgsSmall }) => {
           ></span>
         </>
       )}
-    </div>
+    </>
   );
 };
