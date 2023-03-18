@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useCartModal } from "@/context/useCartModal";
 
 import LogoSneakers from "@/assets/images/logo.svg";
 import Avatar from "@/assets/images/image-avatar.png";
@@ -10,6 +11,8 @@ import NavLinkHeader from "@/components/header/NavLinkHeader";
 import CartModalHeader from "@/components/header/CartModalHeader";
 
 const MainHeader = () => {
+  const { totalQuantityProducts } = useContext(useCartModal);
+
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isToggleCart, setIsToggleCart] = useState(false);
 
@@ -48,10 +51,16 @@ const MainHeader = () => {
           <NavLinkHeader text="Contact" />
         </nav>
         <div className="flex gap-4">
-          <button onClick={() => setIsToggleCart(!isToggleCart)}>
-            {isToggleCart && <CartModalHeader />}
+          <button
+            className="relative"
+            onClick={() => setIsToggleCart(!isToggleCart)}
+          >
             <CartIcon />
+            <span className="absolute top-0 right-0 translate-x-1 rounded-full bg-orange-primary px-1 text-xs font-bold text-white">
+              {totalQuantityProducts}
+            </span>
           </button>
+          {isToggleCart && <CartModalHeader />}
           <img className="w-10" src={Avatar} alt="" />
         </div>
       </header>

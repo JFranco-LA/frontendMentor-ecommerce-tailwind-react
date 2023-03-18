@@ -6,6 +6,7 @@ import CloseIcon from "@/components/icons/CloseIcon";
 export default ({
   productImgs = [],
   productImgsSmall = [],
+  objectProducts = {},
   isOpenModal = false,
   handleCloseModal = null,
   handleOpenModal = () => {},
@@ -34,7 +35,7 @@ export default ({
   return (
     <section {...props}>
       {isOpenModal && (
-        <button className="md:col-span-4 ml-auto" onClick={handleCloseModal}>
+        <button className="ml-auto md:col-span-4" onClick={handleCloseModal}>
           <CloseIcon />
         </button>
       )}

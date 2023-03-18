@@ -2,7 +2,7 @@ import SlideProduct from "@/components/product/gallery/SlideProduct";
 import ModalProduct from "@/components/product/gallery/SlideProduct";
 import { useState } from "react";
 
-export default ({ productImgs, productImgsSmall }) => {
+export default ({ productImgs, productImgsSmall, objectProducts }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -17,6 +17,7 @@ export default ({ productImgs, productImgsSmall }) => {
     <>
       <SlideProduct
         className="grid md:cursor-pointer md:grid-cols-4 md:gap-4"
+        objectProducts={objectProducts}
         productImgs={productImgs}
         productImgsSmall={productImgsSmall}
         // onClick={handleOpenModal}
@@ -26,6 +27,7 @@ export default ({ productImgs, productImgsSmall }) => {
         <>
           <ModalProduct
             className="hidden md:absolute md:top-1/2 md:left-1/2 md:z-10 md:grid md:max-w-xl md:-translate-y-1/2 md:-translate-x-1/2 md:grid-cols-4 md:gap-4"
+            objectProducts={objectProducts}
             productImgs={productImgs}
             isOpenModal={isOpenModal}
             productImgsSmall={productImgsSmall}
